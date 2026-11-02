@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valley of Flowers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for the interactive tabs */
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-active { 
+            background-color: #eff6ff; 
+            border-color: #3b82f6; 
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          
+            <!-- Logo and Name Container (Replaced TravelBlog) -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back Button (Kept exactly as is) -->
+            <a href="../stateseries/uttarakhandindex2.html" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back
+            </a>
+            
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+        
+        <!-- 1. INTRODUCTION MODULE -->
+        <section id="intro-module" class="w-full space-y-12">
+            <header class="text-center">
+                <span class="text-sm font-bold text-indigo-600 uppercase tracking-widest">Uttarakhand</span>
+            </header>
+            <header class="text-left w-full space-y-3" >
+                <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                    Valley of Flowers
+                </h1>
+                <h2 class="text-xl sm:text-2xl font-normal italic text-gray-600">
+                    A journey that touches the heart
+                </h2>
+            </header>
+
+            <div class="rounded-2xl overflow-hidden shadow-lg aspect-[16/9] w-full">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Valley of Flowers" class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p>
+                    Located in Uttarakhand's Chamoli district, the Valley of Flowers is a renowned National Park and UNESCO World Heritage Site. 
+                    Covering about 87 square kilometers, it forms a vital part of the Nanda Devi Biosphere Reserve.
+                    The valley is best known for its incredible variety of over 500 rare alpine flowers, featuring unique species like the Brahma Kamal and Blue Poppy. 
+                    For eight months of the year, heavy snow completely covers the region, but between July and September, it bursts into a massive, colorful bloom. 
+                    Along with the flowers, this untouched habitat is home to rare wildlife such as the Snow Leopard and Musk Deer. 
+                    Legend even says that Hanuman came to this specific valley looking for the Sanjeevani herb. Ultimately, 
+                    it is this mix of rich biodiversity and raw natural beauty that makes it a famous ecological hotspot worldwide.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. ITINERARY MODULE -->
+        <section id="itinerary-module" class="w-full pt-12">
+            <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Valley of Flowers Trek Itinerary</h1>
+            <p class="text-gray-500 mb-8 text-sm pl-4">Interactive 5-Day Route & Elevation Profile</p>
+
+            <!-- Tabs -->
+            <div id="tabs-container" class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6"></div>
+
+            <!-- Chart Section -->
+            <div class="bg-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-sm font-medium text-gray-700">Elevation Profile</h2>
+                    <span class="text-sm text-gray-500 italic">1,800m – 4,300m</span>
+                </div>
+                
+                <div class="relative w-full h-48">
+                    <svg id="chart-svg" class="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none"></svg>
+                </div>
+                
+                <div class="flex justify-between mt-2 text-gray-500 text-xs font-semibold px-4" id="x-axis-labels">
+                    <span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span>
+                </div>
+            </div>
+
+            <!-- Details Card -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="text-sm text-gray-500 italic" id="card-subtitle">Day 1 • Drive</div>
+                    <div id="card-tag" class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Easy</div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-900" id="card-title">Haridwar to Govindghat</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 border-t border-gray-100 pt-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Distance</div>
+                        <div class="font-semibold text-gray-900" id="card-distance">290 km drive</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Max Altitude</div>
+                        <div class="font-semibold text-gray-900" id="card-altitude">1,800 m</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Activity</div>
+                        <div class="font-semibold text-gray-900" id="card-activity">Drive</div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-600 text-sm leading-relaxed" id="card-desc">
+                    Start your journey from Haridwar and drive along the Alaknanda river to reach Govindghat, the base camp for the trek.               
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. KEY POINTS MODULE -->
+        <section class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Important Details</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Location</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Chamoli, Uttarakhand</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Altitude</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">14,100 ft <br /> (4,300 m)</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Duration</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">4-5 Days</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Difficulty</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Moderate</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Total Trek Distance</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">34-38 KM</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Best Time</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Jul - Aug</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Key Highlights</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Witness over 500 species of rare alpine flowers, including the Blue Poppy, Brahma Kamal and Campanula. 
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Sanctuary is a protected habitat for endangered Himalayan species like the snow leopard, blue sheep, Himalayan black bear, and various alpine birds.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Stunning views of the Pushpawati River cascading through the valley.
+                    </li>
+                </ul>
+            </div>
+        </section>
+ 
+        <!-- Mandatory Permits & Documents -->
+        <section class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Mandatory Permits & Documents</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        You need official clearance from the Joshimath DFO to enter the protected area. If you book with a trekking agency, they will handle this process for you. 
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Mandatory fitness document signed and stamped by an MBBS doctor, confirming you are physically ready for high altitudes.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Always carry your original government photo ID (Aadhaar / Voter ID / Passport), along with 2-3 physical photocopies in your backpack.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Traveller Note -->
+        <section class="w-full pt-12 space-y-12">
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p style="background-color: #ffeb3b; font-size: 24px; font-weight: bold; display: inline-block; padding: 3px 6px; border-radius: 4px;">
+                    Important Note for Travelers:
+                </p>
+                <p class="mt-4">
+                It is a common misconception that the Valley of Flowers and Hemkund Sahib are the exact same trek. While they do share the same base camp (Ghangaria), they are two completely different destinations. Once you reach Ghangaria, the trail splits into two opposite directions. One path leads you on a gentle walk into the colorful meadows of the Valley of Flowers, while the other takes you on a steep, challenging climb to the glacial lake and Gurudwara of Hemkund Sahib. You can easily cover both, but they require separate day trips from the base camp!
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. IMAGE GALLERY MODULE -->
+        <section id="gallery-module" class="w-full pt-12 space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Trek Gallery</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Photo 1 -->
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=800&q=80" alt="Valley of Flowers landscape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <!-- Photo 2 -->
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=800&q=80" alt="Alpine flowers blooming" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <!-- Photo 3 -->
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=800&q=80" alt="Pushpawati river view" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ MODULE -->
+        <section id="faq-module" class="w-full pt-12">
+            <div onclick="openFirstFaqDirect()" class="cursor-pointer inline-block mb-8">
+                <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Frequently Asked Questions</h1>
+                <p class="text-gray-500 text-sm pl-4">Everything you need to know before heading to the Valley of Flowers</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Can we camp inside the Valley of Flowers by pitching a tent?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Absolutely not. This is a UNESCO World Heritage Site and a National Park. The gates open at 7 a.m., and you must be out by 5 p.m. All trekkers are required to stay at Ghangaria (Base Camp), where hotels and guesthouses are readily available.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Why is this trek so famous and what's so special about it?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        It's a UNESCO World Heritage Site that's at its peak only during the monsoon season (July-August). Its most striking feature is its "magical transition"—you walk through rough, barren mountains and suddenly enter a vast valley filled with the colors of 500+ rare Himalayan flowers (like the Brahma Kamal and the Blue Poppy). This is one of the few treks in India that can be undertaken during the heavy monsoon season and where such a dramatic shift in nature can be witnessed.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Can this trek be done solo, or is a guide necessary?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        A guide is not necessary; this is a 100% DIY and solo-friendly trek. The route from Govindghat to Ghangaria is well-defined (paved in some places) and is quite crowded during peak season. The trail from Ghangaria to Valley of Flowers and Hemkund Sahib is also clear and well-marked, so there's no chance of getting lost. You can complete this trek comfortably on your own without a guide.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>What is the estimated total budget for a solo trekker?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        The total DIY budget for a Rishikesh-to-Rishikesh trek is approximately ₹7,000 to ₹9,000. This cost covers your shared transportation, budget accommodation (guesthouse or Gurudwara), daily meals, and trek permits. If you carry your own backpack and avoid mules, you can easily complete this trek within ₹7,500.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MORE TO EXPLORE MODULE -->
+        <section id="explore-module" class="w-full pt-8 border-t border-gray-200 mt-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">More to Explore</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=400&q=80" alt="Hemkund Sahib" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Hemkund Sahib</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=400&q=80" alt="Badrinath" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Kedarkantha Trek</h4>
+                        <a href="kedarkantha-trek.html" class="text-sm text-indigo-600 md-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=400&q=80" alt="Rishikesh" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Kuari Pass Trek</h4>
+                        <a href="kuari-pass-trek.html" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none z-50">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Full Screen" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- JavaScript Scripts -->
+    <script>
+        const trekData = [
+            { day: 1, title: 'Day 1', label: '1,800 m', elev: 1800, route: 'Haridwar to Govindghat', activity: 'Drive', subtitle: 'Day 1 • Drive', distance: '290 km drive', altitude: '1,800 m (6,200 ft)', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'Start your journey from Haridwar and drive along the Alaknanda river to reach Govindghat, the base camp for the trek'  },
+            { day: 2, title: 'Day 2', label: '3,000 m', elev: 3000, route: 'Govindghat to Ghangaria', activity: 'Trek', subtitle: 'Day 2 • Trek', distance: '13 km trek', altitude: '3,000 m (9,850 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'A scenic trek along the Pushpawati river. The trail is well-defined but involves a gradual ascent to reach Ghangaria.' },
+            { day: 3, title: 'Day 3', label: '3,500 m', elev: 3500, route: 'Ghangaria to Valley of Flowers', activity: 'Trek', subtitle: 'Day 3 • Trek', distance: '10 km trek (round trip)', altitude: '3,500 m (11,500 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'Enter the magnificent Valley of Flowers. Spend the day exploring the myriad of blooming Himalayan flora before returning to Ghangaria.' },
+            { day: 4, title: 'Day 4', label: '4,300 m', elev: 4300, route: 'Ghangaria to Hemkund Sahib', activity: 'Trek', subtitle: 'Day 4 • High Altitude Trek', distance: '12 km trek (round trip)', altitude: '4,300 m (14,107 ft)', tag: 'Hard', tagColor: 'text-rose-700 bg-rose-100', desc: 'A steep and challenging climb to the glacial lake of Hemkund Sahib. Pay respects at the Gurudwara and enjoy the pristine surroundings.' },
+            { day: 5, title: 'Day 5', label: '1,800 m (Descent)', elev: 1800, route: 'Ghangaria to Govindghat to Haridwar', activity: 'Trek & Drive', subtitle: 'Day 5 • Trek & Drive', distance: '13 km trek + 290 km drive', altitude: '1,800 m (6,200 ft) Descent', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'Descent trek from Ghangaria back to Govindghat, followed by a comfortable drive back to Haridwar to complete the expedition.' }
+        ];
+
+        let activeDay = 1; 
+
+        function renderTabs() {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = '';
+            
+            trekData.forEach(item => {
+                const isActive = item.day === activeDay;
+                const btn = document.createElement('button');
+                btn.className = `tab-btn flex flex-col items-center justify-center p-3 rounded-[30px] border ${isActive ? 'tab-active' : 'bg-white border-gray-200 hover:border-gray-300'} cursor-pointer w-full focus:outline-none shadow-sm`;
+                btn.onclick = () => {
+                    activeDay = item.day;
+                    updateUI();
+                };
+                
+                btn.innerHTML = `
+                    <span class="font-bold text-sm ${isActive ? 'text-blue-700' : 'text-gray-700'}">${item.title}</span>
+                    <span class="text-xs ${isActive ? 'text-blue-500' : 'text-gray-500'} mt-1">${item.label}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function drawChart() {
+            const svg = document.getElementById('chart-svg');
+            const minElev = 1500;
+            const maxElev = 4500;
+            const width = 800;
+            const height = 140; 
+            
+            const points = trekData.map((d, index) => {
+                const x = (index / (trekData.length - 1)) * (width - 100) + 50; 
+                const y = height - ((d.elev - minElev) / (maxElev - minElev)) * height + 20;
+                return { x, y, val: d.elev, day: d.day };
+            });
+
+            let pathD = `M ${points[0].x} ${points[0].y}`;
+            points.slice(1).forEach(p => { pathD += ` L ${p.x} ${p.y}`; });
+
+            let svgContent = `<path d="${pathD}" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />`;
+
+            points.forEach(p => {
+                const isActive = p.day === activeDay;
+                const r = isActive ? 8 : 6;
+                const fill = isActive ? '#3b82f6' : '#ffffff';
+                const stroke = '#3b82f6';
+                const strokeWidth = isActive ? 0 : 3;
+                
+                svgContent += `
+                    <circle cx="${p.x}" cy="${p.y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}" class="transition-all duration-300 drop-shadow-md"/>
+                    <text x="${p.x}" y="${p.y - 15}" fill="${isActive ? '#111827' : '#6b7280'}" font-size="14" font-weight="${isActive ? 'bold' : '600'}" text-anchor="middle">${p.val}m</text>
+                `;
+            });
+
+            svg.innerHTML = svgContent;
+        }
+
+        function updateCard() {
+            const data = trekData.find(d => d.day === activeDay);
+            document.getElementById('card-subtitle').textContent = data.subtitle;
+            document.getElementById('card-title').textContent = data.route;
+            document.getElementById('card-distance').textContent = data.distance;
+            document.getElementById('card-altitude').textContent = data.altitude;
+            document.getElementById('card-activity').textContent = data.activity;
+            document.getElementById('card-desc').textContent = data.desc;
+            
+            const tag = document.getElementById('card-tag');
+            tag.textContent = data.tag;
+            tag.className = `text-xs font-semibold px-3 py-1 rounded-full ${data.tagColor}`;
+        }
+
+        function updateUI() {
+            renderTabs();
+            drawChart();
+            updateCard();
+        }
+
+        // Initialize UI
+        updateUI();
+
+        // FAQ Toggle Function
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                const btn = item.querySelector('button');
+                const c = item.querySelector('div');
+                const i = item.querySelector('svg');
+                if (btn !== button) {
+                    c.classList.add('hidden');
+                    i.classList.remove('rotate-180');
+                }
+            });
+
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Navbar FAQs Click Handler
+        function scrollToAndOpenFaq(event) {
+            event.preventDefault();
+            const section = document.getElementById('faq-module');
+            section.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                openFirstFaqDirect();
+            }, 300);
+        }
+
+        // Direct Open First FAQ
+        function openFirstFaqDirect() {
+            const firstCard = document.querySelector('#faq-module .space-y-4 > div');
+            if (firstCard) {
+                const content = firstCard.querySelector('div.hidden');
+                const icon = firstCard.querySelector('svg');
+
+                document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                    item.querySelector('div').classList.add('hidden');
+                    item.querySelector('svg').classList.remove('rotate-180');
+                });
+
+                if (content && icon) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            }
+        }
+
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+    <!-- Professional Footer with All Rights Reserved -->
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo and Name Container -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Icons / Quick Links -->
+            <div class="flex space-x-4 text-gray-500 text-lg">
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="border-t border-gray-100 py-4 text-center text-xs text-gray-500">
+            <p>&copy; 2026 Himalayan Hues. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

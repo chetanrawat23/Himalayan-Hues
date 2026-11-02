@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himalayan Hues</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      max-width: 95vw;
+      max-height: 95vh;
+      display: block;
+      overflow: visible;
+    }
+
+    .state-path {
+      fill: #f1f5f9;
+      stroke: #cbd5e1;
+      stroke-width: 1.2px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      cursor: pointer;
+      transform-box: fill-box;
+      transform-origin: center center;
+      transition: fill 0.3s ease, stroke 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+      will-change: transform, filter, fill;
+    }
+
+    .state-path:hover {
+      stroke: #ffffff;
+      stroke-width: 1.5px;
+      transform: scale(1.025) translateY(-4px);
+      filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    }
+
+    .state-path:active {
+      transform: scale(1.01) translateY(-1px);
+      filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
+    }
+
+    #tooltip {
+      position: fixed;
+      pointer-events: none;
+      opacity: 0;
+      background: rgba(15, 23, 42, 0.75);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.15s ease;
+      transform: translate(-50%, -150%);
+      z-index: 999;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 w-screen h-screen overflow-hidden relative">
+
+<!-- Website Name, Logo & Motto -->
+  <div class="absolute top-6 left-6 z-[50] flex items-center gap-4">
+    <!-- Logo (bg-white, border, aur shadow hata diya gaya hai) -->
+    <div class="w-20 h-20 flex items-center justify-center shrink-0">
+      <img src="elements\L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-150">
+    </div>
+    
+    <!-- Title & Motto Container -->
+    <div class="flex flex-col justify-center">
+      <h2 class="text-3xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+        Himalayan <span class="text-blue-600">Hues</span>
+      </h2>
+      <!-- Motto -->
+      <p class="text-[12px] sm:text-sm font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+        Dusty Boots, Vivid Altitudes
+      </p>
+    </div>
+  </div>
+
+  <main id="map-container" class="w-full h-full flex items-center justify-center">
+    <svg id="india-svg"></svg>
+  </main>
+
+  <div id="tooltip"></div>
+
+  <script>
+    const tooltip = document.getElementById('tooltip');
+    let svg, g, projection, pathGenerator;
+
+    const PRIMARY_GEOJSON = "https://raw.githubusercontent.com/AbhinavSwami28/india-official-geojson/main/india-states-simplified.geojson";
+    const SECONDARY_GEOJSON = "https://gist.githubusercontent.com/shubham-raghav/c2826cf683057dc6be88f6d6cda85641/raw/india_states.geojson";
+
+    const stateLinks = {
+      "Andaman and Nicobar Islands": "tumhara_page.html",
+      "Andhra Pradesh": "tumhara_page.html",
+      "Arunachal Pradesh": "tumhara_page.html",
+      "Assam": "tumhara_page.html",
+      "Bihar": "tumhara_page.html",
+      "Chandigarh": "tumhara_page.html",
+      "Chhattisgarh": "tumhara_page.html",
+      "Dadra and Nagar Haveli and Daman and Diu": "tumhara_page.html",
+      "Delhi": "tumhara_page.html",
+      "Goa": "tumhara_page.html",
+      "Gujarat": "tumhara_page.html",
+      "Haryana": "tumhara_page.html",
+      "Himachal Pradesh": "stateseries\\himachalindex2.html",
+      "Jammu and Kashmir": "stateseries\\jammukashmirindex2.html",
+      "Jharkhand": "tumhara_page.html",
+      "Karnataka": "tumhara_page.html",
+      "Kerala": "tumhara_page.html",
+      "Ladakh": "tumhara_page.html",
+      "Lakshadweep": "tumhara_page.html",
+      "Madhya Pradesh": "tumhara_page.html",
+      "Maharashtra": "tumhara_page.html",
+      "Manipur": "tumhara_page.html",
+      "Meghalaya": "tumhara_page.html",
+      "Mizoram": "tumhara_page.html",
+      "Nagaland": "tumhara_page.html",
+      "Odisha": "tumhara_page.html",
+      "Puducherry": "tumhara_page.html",
+      "Punjab": "tumhara_page.html",
+      "Rajasthan": "tumhara_page.html",
+      "Sikkim": "tumhara_page.html",
+      "Tamil Nadu": "tumhara_page.html",
+      "Telangana": "tumhara_page.html",
+      "Tripura": "tumhara_page.html",
+      "Uttar Pradesh": "tumhara_page.html",
+      "Uttarakhand": "stateseries\\uttarakhandindex2.html",
+      "West Bengal": "tumhara_page.html"
+    };
+
+    function getStateName(feature) {
+      let name = feature.properties.NAME_1 || 
+                 feature.properties.st_nm || 
+                 feature.properties.state_name || 
+                 feature.properties.NAME || 
+                 feature.properties.name || "State";
+                 
+      if (name === "Uttaranchal") {
+        return "Uttarakhand";
+      }
+      return name;
+    }
+
+    function openStatePage(stateName) {
+      const url = stateLinks[stateName];
+      if (url) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        console.log("Page link not found for: " + stateName);
+      }
+    }
+
+    function updateProjection(width, height) {
+      projection
+        .center([82.8, 22.8])
+        .scale(Math.min(width, height) * 1.5)
+        .translate([width / 2, height / 2]);
+      g.selectAll('.state-path').attr('d', pathGenerator);
+    }
+    
+    function getRandomColor() {
+      const hue = Math.floor(Math.random() * 360);
+      return `hsl(${hue}, 80%, 60%)`;
+    }
+
+    async function initMap() {
+      const container = document.getElementById('map-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      svg = d3.select("#india-svg")
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet");
+
+      g = svg.append("g");
+
+      projection = d3.geoMercator()
+        .center([82.8, 22.8])
+        .scale(Math.min(width, height) * 1.5)
+        .translate([width / 2, height / 2]);
+
+      pathGenerator = d3.geoPath().projection(projection);
+
+      try {
+        let response = await fetch(PRIMARY_GEOJSON);
+        if (!response.ok) throw new Error("Primary boundary fetch failed");
+        let data = await response.json();
+        renderMap(data);
+      } catch (err) {
+        try {
+          let response2 = await fetch(SECONDARY_GEOJSON);
+          let data2 = await response2.json();
+          renderMap(data2);
+        } catch (e) {
+          console.error("Failed to load map data", e);
+        }
+      }
+    }
+
+    function renderMap(geoData) {
+      let mpFeature = geoData.features.find(f => getStateName(f) === "Madhya Pradesh");
+      const container = document.getElementById('map-container');
+      let mpX = container.clientWidth / 2;
+      let mpY = container.clientHeight / 2;
+
+      if (mpFeature) {
+        const centroid = pathGenerator.centroid(mpFeature);
+        if (centroid && !isNaN(centroid[0])) {
+          mpX = centroid[0];
+          mpY = centroid[1];
+        }
+      }
+
+      g.selectAll(".state-path")
+        .data(geoData.features)
+        .enter()
+        .append("path")
+        .attr("class", "state-path")
+        .attr("d", pathGenerator)
+        .style("opacity", 0)
+        .on("mouseenter", function(event, d) {
+          d3.select(this).raise().style("fill", getRandomColor()); 
+          const name = getStateName(d);
+          tooltip.innerHTML = name;
+          tooltip.style.opacity = "1";
+        })
+        .on("mousemove", function(event) {
+          tooltip.style.left = `${event.clientX}px`;
+          tooltip.style.top = `${event.clientY}px`;
+        })
+        .on("mouseleave", function() {
+          d3.select(this).style("fill", null); 
+          tooltip.style.opacity = "0";
+        })
+        .on("click", function(event, d) {
+          const name = getStateName(d);
+          openStatePage(name);
+        })
+        .transition()
+        .duration(600) 
+        .delay(function(d) {
+          const centroid = pathGenerator.centroid(d);
+          if (centroid && !isNaN(centroid[0]) && !isNaN(centroid[1])) {
+            const distance = Math.sqrt(Math.pow(centroid[0] - mpX, 2) + Math.pow(centroid[1] - mpY, 2));
+            const stepSize = 70; 
+            const ringLayer = Math.floor(distance / stepSize);
+            return ringLayer * 200; 
+          }
+          return 0;
+        })
+        .style("opacity", 1); // Ye step missing hone se map gayab ho jata hai
+    }
+
+    window.addEventListener('resize', () => {
+      const container = document.getElementById('map-container');
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      if (svg) {
+        svg.attr("viewBox", `0 0 ${width} ${height}`);
+        updateProjection(width, height);
+      }
+    });
+
+    // Page khulte hi bina kisi button ke map load hoga
+    initMap();
+  </script>
+</body>
+</html>

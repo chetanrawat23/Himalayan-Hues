@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Blog Page</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <!-- Logo and Name Container (Replaced TravelBlog) -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 flex items-center justify-center shrink-0">
+          <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+        </div>
+        <div class="flex flex-col justify-center">
+          <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+            Himalayan <span class="text-blue-600">Hues</span>
+          </h2>
+          <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+            Dusty Boots, Vivid Altitudes
+          </p>
+        </div>
+      </div>
+
+      <!-- Back Button (Kept exactly as is) -->
+      <a href="../stateseries/uttarakhandindex2.html" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="max-w-4xl mx-auto px-4 py-10 space-y-12">
+
+    <!-- 1. INTRODUCTION MODULE -->
+    <section id="intro-module" class="w-full space-y-12">
+        <header class="text-center">
+            <span class="text-sm font-bold text-indigo-600 uppercase tracking-widest">Uttarakhand</span>
+        </header>
+      <header class="text-left">
+        <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+          Valley of Flowers
+        </h1>
+        <h2 class="text-base sm:text-lg font-normal text-gray-600">
+          A journey that touches the heart
+        </h2>
+      </header>
+      <div class="rounded-2xl overflow-hidden shadow-lg aspect-[16/9] w-full">
+        <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Valley of Flowers" class="w-full h-full object-cover">
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+        Introduction
+      </h2>
+      <p class="text-gray-600 mb-4">
+        The Himalayas are not just mountains; they are an emotion. Towering snow peaks, pristine alpine meadows, and winding river trails offer a soul-stirring experience for every traveler. Whether you are seeking spiritual peace or an adrenaline-pumping trek, this region welcomes you with open arms.
+      </p>
+      <p class="text-gray-600">
+        In this guide, we cover everything you need to know before stepping onto the trails—from the top places you cannot afford to miss, to essential tips to keep your journey safe and sustainable.
+      </p>
+    </section>
+
+    
+    <!-- Do's Box -->
+      <div class="bg-emerald-50 border border-emerald-100 p-6 rounded-2xl">
+        <h3 class="text-xl font-bold text-emerald-900 mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Do's
+        </h3>
+        <ul class="space-y-3 text-emerald-900 text-sm">
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span> 
+            Carry reusable water bottles and minimize plastic use.
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span> 
+            Acclimatize properly before climbing higher altitudes.
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-emerald-600 font-bold">✓</span> 
+            Respect local traditions, culture, and wildlife habitats.
+          </li>
+        </ul>
+      </div>
+
+      <!-- Don'ts Box -->
+      <div class="bg-rose-50 border border-rose-100 p-6 rounded-2xl">
+        <h3 class="text-xl font-bold text-rose-900 mb-4 flex items-center gap-2">
+          <svg class="w-6 h-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          Don'ts
+        </h3>
+
+        <ul class="space-y-3 text-rose-900 text-sm">
+          <li class="flex items-start gap-2">
+            <span class="text-rose-600 font-bold">✕</span> 
+            Do not litter plastic wrappers or non-biodegradable waste.
+          </li>
+
+          <li class="flex items-start gap-2">
+            <span class="text-rose-600 font-bold">✕</span> 
+            Avoid playing loud music or disturbing the mountain peace.
+          </li>
+
+          <li class="flex items-start gap-2">
+            <span class="text-rose-600 font-bold">✕</span> 
+            Do not stray away from marked trails without a local guide.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Professional Footer with All Rights Reserved -->
+  <footer class="bg-white border-t border-gray-200 mt-16">
+    <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <!-- Logo and Name Container (Replaced TravelBlog) -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 flex items-center justify-center shrink-0">
+          <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+        </div>
+        <div class="flex flex-col justify-center">
+          <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+            Himalayan <span class="text-blue-600">Hues</span>
+          </h2>
+          <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+            Dusty Boots, Vivid Altitudes
+          </p>
+        </div>
+      </div>
+
+      <!-- Social Icons / Quick Links -->
+      <div class="flex space-x-4 text-gray-500">
+        <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <!-- Copyright Bar -->
+    <div class="border-t border-gray-100 py-4 text-center text-xs text-gray-500">
+      <p>&copy; 2026 WanderLust Blog. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

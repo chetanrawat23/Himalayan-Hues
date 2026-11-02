@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trek Guide - Complete Itinerary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for the interactive tabs */
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-active { 
+            background-color: #eff6ff; 
+            border-color: #3b82f6; 
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          
+            <!-- Logo and Name Container (Replaced TravelBlog) -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back Button (Kept exactly as is) -->
+            <a href="../stateseries/uttarakhandindex2.html" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back
+            </a>
+            
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+        
+        <!-- 1. INTRODUCTION MODULE -->
+        <section id="intro-module" class="w-full space-y-12">
+            <header class="text-center">
+                <span class="text-sm font-bold text-indigo-600 uppercase tracking-widest">Uttarakhand</span>
+                <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                    Kedarkantha Trek | India’s Most Loved Winter Summit
+                </h1>
+            </header>
+
+            <div class="rounded-2xl overflow-hidden shadow-lg aspect-[16/9] w-full">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Kedarkantha Trek" class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p>
+                  Most Himalayan treks are about reaching a high-altitude lake or a valley, but Kedarkantha gives you 
+                  the pure, adrenaline-pumping thrill of a proper summit climb. Located at 12,500 feet inside Uttarakhand’s 
+                  Govind Wildlife Sanctuary, it is easily India’s most famous winter trek. It is massively popular because 
+                  it gives a regular backpacker the raw thrill of a hardcore alpine expedition—without requiring a single 
+                  technical climbing skill or rope.<br><br> The trail itself feels like a literal winter fairy tale. You will hike 
+                  under thick pine and oak canopies heavily loaded with fresh snow. Sliding around the completely frozen 
+                  Juda Ka Talab and pitching your tent right next to it makes the journey so incredibly immersive that you 
+                  hardly even notice the physical fatigue. The real magic, however, is the summit push. Making that final 
+                  steep climb in the freezing pre-dawn dark with just a headlamp will definitely test your lungs. But the 
+                  moment you stand at the top, you are rewarded with a mind-blowing 360-degree panorama of Himalayan giants 
+                  like Swargarohini, Black Peak, and Bandarpoonch.<br><br> Watching the sunrise light up those peaks from that 
+                  altitude is a vibe you will remember for the rest of your life. You do not need any prior mountaineering 
+                  experience or technical skills. A decent level of fitness is all you need to experience the rush of 
+                  standing above the clouds.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. ITINERARY MODULE -->
+        <section id="itinerary-module" class="w-full pt-12">
+            <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Kedarkantha Trek Itinerary</h1>
+            <p class="text-gray-500 mb-8 text-sm pl-4">Interactive 5-Day Route & Elevation Profile</p>
+
+            <!-- Tabs -->
+            <div id="tabs-container" class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6"></div>
+
+            <!-- Chart Section -->
+            <div class="bg-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-sm font-medium text-gray-700">Elevation Profile</h2>
+                    <span class="text-sm text-gray-500 italic">1,950m – 3,810m</span>
+                </div>
+                
+                <div class="relative w-full h-48">
+                    <svg id="chart-svg" class="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none"></svg>
+                </div>
+                
+                <div class="flex justify-between mt-2 text-gray-500 text-xs font-semibold px-4" id="x-axis-labels">
+                    <span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span>
+                </div>
+            </div>
+
+            <!-- Details Card -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="text-sm text-gray-500 italic" id="card-subtitle">Day 1 • Drive</div>
+                    <div id="card-tag" class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Easy</div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-900" id="card-title">Dehradun to Sankri</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 border-t border-gray-100 pt-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Distance</div>
+                        <div class="font-semibold text-gray-900" id="card-distance">200 km drive</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Max Altitude</div>
+                        <div class="font-semibold text-gray-900" id="card-altitude">1,950 m</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Activity</div>
+                        <div class="font-semibold text-gray-900" id="card-activity">Drive</div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-600 text-sm leading-relaxed" id="card-desc">
+                  Your journey starts with a 200 km drive from Dehradun to Sankri. Sankri is the same buzzing base camp used for Har Ki Dun, 
+                  filled with local dhabas, trekkers, and cozy homestays.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. KEY POINTS MODULE -->
+        <section id="keypoints-module" class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Important Details</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Location</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Uttarkashi, Uttarakhand</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Altitude</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">12,500 ft <br /> (3,810 m)</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Duration</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">4-5 Days</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Difficulty</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Moderate</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Total Trek Distance</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">20-22 KM</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Best Time</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Dec - April</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Key Highlights</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Most beginner trails end at a pass or a valley, but Kedarkantha gives you a genuine summit climb. The freezing early-morning push in the dark rewards you with a massive 360-degree sunrise view of Himalayan giants like Swargarohini and Black Peak.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        From mid-December to March, the entire trail transforms into a flawless winter wonderland. Trekking through heavy, knee-deep snow inside dense pine forests is the biggest reason people flock here every winter.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        You get to pitch your tent right next to the completely frozen Juda Ka Talab lake. The upper base camp is equally stunning, set in a clearing of snow-draped trees with an incredibly clear view of the Milky Way.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        High Reward, Low Risk despite the intimidating 12,500 ft. elevation gain, this route is well-traveled and safe. While climbing the steep peak requires a good deal of stamina, it doesn't require any technical mountaineering skills, making it perfect for your first snow trek.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. Mandatory Permits & Documents -->
+        <section id="permits-module" class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Mandatory Permits & Documents</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Government Photo ID Proof (Original + Photocopy)
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Govind Wildlife Sanctuary entry permits are available on-the-spot at the Sankri Village Forest Checkpost (no advance online booking required). A nominal entry fee (approximately ₹150 per person) and campsite charges (approximately ₹200 per night/tent) are payable in cash if camping.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Before departure, it's mandatory to complete a free biometric/tourist registration online on the Tourist Care Uttarakhand portal. Keep a digital slip or screenshot of this information on your phone.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        UPI or card swiping is not reliable on the Sankari and beyond route (due to network issues), so keep cash with you for forest fees and local expenses.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 1. Traveller Note -->
+        <section id="traveler-note-module" class="w-full pt-12 space-y-12">
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p style="background-color: #ffeb3b; font-size: 24px; font-weight: bold; display: inline-block; padding: 3px 6px; border-radius: 4px;">
+                  Important Note for Travelers:
+                </p>
+                <p class="mt-4">
+                It is a common misconception that the Valley of Flowers and Hemkund Sahib are the exact same trek. While they do share the same base camp (Ghangaria), they are two completely different destinations. Once you reach Ghangaria, the trail splits into two opposite directions. One path leads you on a gentle walk into the colorful meadows of the Valley of Flowers, while the other takes you on a steep, challenging climb to the glacial lake and Gurudwara of Hemkund Sahib. You can easily cover both, but they require separate day trips from the base camp!
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. IMAGE GALLERY MODULE -->
+        <section id="gallery-module" class="w-full pt-12 space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Trek Gallery</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=800&q=80" alt="Kedarkantha landscape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=800&q=80" alt="Winter trails" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=800&q=80" alt="Summit views" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ MODULE -->
+        <section id="faq-module" class="w-full pt-12">
+            <div onclick="openFirstFaqDirect()" class="cursor-pointer inline-block mb-8">
+                <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Frequently Asked Questions</h1>
+                <p class="text-gray-500 text-sm pl-4">Everything you need to know before heading to the Kuari Pass Trek</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Why is this trek so famous and what's so special about it?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        It is widely considered India's most loved winter trek. The most special thing about it is the perfect, knee-deep snow trail through dense pine forests and the thrilling experience of a proper summit climb. Once you reach the top, you get a stunning 360-degree view of mighty Himalayan giants like Swargarohini, Black Peak, and Bandarpoonch.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Can this trek be done solo, or is a guide necessary?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Taking a guide is not legally required, and you can easily do it solo during the spring or autumn months. However, since this is primarily a winter trek (December to March), heavy snowfall often completely hides the trail, making navigation very tricky. During peak winter, hiring a local guide from Sankri base camp (around ₹1,000 per day) is highly recommended for your safety.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>What is the estimated total budget for a solo trekker?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        The total DIY budget from Dehradun to Dehradun comes to around ₹5,500 to ₹7,500. This easily covers your shared transport (bus or sumo) from Dehradun to Sankri, the Govind Pashu Vihar National Park forest permits, basic stays at the base camp, and your daily food on the trail. If you need to rent heavy winter gear like crampons or minus-degree sleeping bags from Sankri, it will add a little extra to this cost.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MORE TO EXPLORE MODULE -->
+        <section id="explore-module" class="w-full pt-8 border-t border-gray-200 mt-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">More to Explore</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=400&q=80" alt="Hemkund Sahib" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Hemkund Sahib</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=400&q=80" alt="Badrinath" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Badrinath Temple</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=400&q=80" alt="Rishikesh" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Rishikesh Guide</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none z-50">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Full Screen" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- JavaScript Scripts -->
+    <script>
+        const trekData = [
+            { day: 1, title: 'Day 1', label: '1,950 m', elev: 1950, route: 'Dehradun to Sankri', activity: 'Drive', subtitle: 'Day 1 • Drive', distance: '200 km drive', altitude: '1,950 m (6,397 ft)', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'Your journey starts with a 200 km drive from Dehradun to Sankri. Sankri is the same buzzing base camp used for Har Ki Dun, filled with local dhabas, trekkers, and cozy homestays.'  },
+            { day: 2, title: 'Day 2', label: '2,755 m', elev: 2755, route: 'Sankri to Juda Ka Talab', activity: 'Trek', subtitle: 'Day 2 • Trek', distance: '4 km trek', altitude: '2,775 m (9,100 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'Trek begins here, steady 4 km climb through thick pine and maple forests. You will end your day pitching a tent right next to Juda Ka Talab, a stunning high-altitude lake that stays completely frozen solid in the peak winter months.' },
+            { day: 3, title: 'Day 3', label: '3,440 m', elev: 3440, route: 'Juda ka Talab to Kedarkantha Base Camp', activity: 'Trek', subtitle: 'Day 3 • Trek', distance: '4 km trek', altitude: '3,440 m (11,285 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'A short but steep 4 km hike takes you out of the dense forests and into wide-open snow meadows. You reach the base camp by lunchtime. The panoramic views open up massively here, and the night sky is usually blazing with stars.' },
+            { day: 4, title: 'Day 4', label: '3,810 m', elev: 3810, route: 'Base camp to Summit & Down to Hargaon', activity: 'Trek', subtitle: 'Day 4 • High Altitude Trek', distance: '8 km trek (round trip)', altitude: '3,810 m (12,500 ft)', tag: 'Hard', tagColor: 'text-rose-700 bg-rose-100', desc: 'Wake up at 2 AM and start hiking with headlamps on. The steep, freezing climb to the 12,500 ft summit takes about 3-4 hours. After soaking in that epic 360-degree sunrise, you slide your way back down to base camp for hot lunch, and then descend further to the Hargaon campsite.' },
+            { day: 5, title: 'Day 5', label: '2,710 m', elev: 2710, route: 'Hargaon to Sankri to Dehradun', activity: 'Decend and Drive', subtitle: 'Day 5 • Decend and Drive', distance: '4-5 km Decend trek', altitude: '2,710 m (8,900 ft)', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'A quick, easy downhill walk brings you back to Sankri by mid-morning. From there, you hop into a shared taxi and drive straight back to Dehradun, wrapping up the adventure by late evening.' },
+             ];
+
+        let activeDay = 1; 
+
+        function renderTabs() {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = '';
+            
+            trekData.forEach(item => {
+                const isActive = item.day === activeDay;
+                const btn = document.createElement('button');
+                btn.className = `tab-btn flex flex-col items-center justify-center p-3 rounded-[30px] border ${isActive ? 'tab-active' : 'bg-white border-gray-200 hover:border-gray-300'} cursor-pointer w-full focus:outline-none shadow-sm`;
+                btn.onclick = () => {
+                    activeDay = item.day;
+                    updateUI();
+                };
+                
+                btn.innerHTML = `
+                    <span class="font-bold text-sm ${isActive ? 'text-blue-700' : 'text-gray-700'}">${item.title}</span>
+                    <span class="text-xs ${isActive ? 'text-blue-500' : 'text-gray-500'} mt-1">${item.label}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function drawChart() {
+            const svg = document.getElementById('chart-svg');
+            const minElev = 1500;
+            const maxElev = 4500;
+            const width = 800;
+            const height = 160; 
+            
+            const points = trekData.map((d, index) => {
+                const x = (index / (trekData.length - 1)) * (width - 100) + 50; 
+                const y = height - ((d.elev - minElev) / (maxElev - minElev)) * height + 20;
+                return { x, y, val: d.elev, day: d.day };
+            });
+
+            let pathD = `M ${points[0].x} ${points[0].y}`;
+            points.slice(1).forEach(p => { pathD += ` L ${p.x} ${p.y}`; });
+
+            let svgContent = `<path d="${pathD}" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />`;
+
+            points.forEach(p => {
+                const isActive = p.day === activeDay;
+                const r = isActive ? 8 : 6;
+                const fill = isActive ? '#3b82f6' : '#ffffff';
+                const stroke = '#3b82f6';
+                const strokeWidth = isActive ? 0 : 3;
+                
+                svgContent += `
+                    <circle cx="${p.x}" cy="${p.y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}" class="transition-all duration-300 drop-shadow-md"/>
+                    <text x="${p.x}" y="${p.y - 15}" fill="${isActive ? '#111827' : '#6b7280'}" font-size="14" font-weight="${isActive ? 'bold' : '600'}" text-anchor="middle">${p.val}m</text>
+                `;
+            });
+
+            svg.innerHTML = svgContent;
+        }
+
+        function updateCard() {
+            const data = trekData.find(d => d.day === activeDay);
+            document.getElementById('card-subtitle').textContent = data.subtitle;
+            document.getElementById('card-title').textContent = data.route;
+            document.getElementById('card-distance').textContent = data.distance;
+            document.getElementById('card-altitude').textContent = data.altitude;
+            document.getElementById('card-activity').textContent = data.activity;
+            document.getElementById('card-desc').textContent = data.desc;
+            
+            const tag = document.getElementById('card-tag');
+            tag.textContent = data.tag;
+            tag.className = `text-xs font-semibold px-3 py-1 rounded-full ${data.tagColor}`;
+        }
+
+        function updateUI() {
+            renderTabs();
+            drawChart();
+            updateCard();
+        }
+
+        // Initialize UI
+        updateUI();
+
+        // FAQ Toggle Function
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                const btn = item.querySelector('button');
+                const c = item.querySelector('div');
+                const i = item.querySelector('svg');
+                if (btn !== button) {
+                    c.classList.add('hidden');
+                    i.classList.remove('rotate-180');
+                }
+            });
+
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Navbar FAQs Click Handler
+        function scrollToAndOpenFaq(event) {
+            event.preventDefault();
+            const section = document.getElementById('faq-module');
+            section.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                openFirstFaqDirect();
+            }, 300);
+        }
+
+        // Direct Open First FAQ
+        function openFirstFaqDirect() {
+            const firstCard = document.querySelector('#faq-module .space-y-4 > div');
+            if (firstCard) {
+                const content = firstCard.querySelector('div.hidden');
+                const icon = firstCard.querySelector('svg');
+
+                document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                    item.querySelector('div').classList.add('hidden');
+                    item.querySelector('svg').classList.remove('rotate-180');
+                });
+
+                if (content && icon) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            }
+        }
+
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+    <!-- Professional Footer with All Rights Reserved -->
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo and Name Container -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Icons / Quick Links -->
+            <div class="flex space-x-4 text-gray-500 text-lg">
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="border-t border-gray-100 py-4 text-center text-xs text-gray-500">
+            <p>&copy; 2026 Himalayan Hues. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

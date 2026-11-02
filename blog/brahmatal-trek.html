@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trek Guide - Complete Itinerary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for the interactive tabs */
+        .tab-btn { transition: all 0.3s ease; }
+        .tab-active { 
+            background-color: #eff6ff; 
+            border-color: #3b82f6; 
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md border-b border-gray-200 z-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          
+            <!-- Logo and Name Container (Replaced TravelBlog) -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Back Button (Kept exactly as is) -->
+            <a href="../stateseries/uttarakhandindex2.html" class="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Back
+            </a>
+            
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+        
+        <!-- 1. INTRODUCTION MODULE -->
+        <section id="intro-module" class="w-full space-y-12">
+            <header class="text-center">
+                <span class="text-sm font-bold text-indigo-600 uppercase tracking-widest">Uttarakhand</span>
+                <h1 class="mt-3 text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                    Brahmatal Trek: A Winter Wonderland
+                </h1>
+            </header>
+
+            <div class="rounded-2xl overflow-hidden shadow-lg aspect-[16/9] w-full">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Brahmatal Trek" class="w-full h-full object-cover">
+            </div>
+
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p>
+                  Most winter treks keep you tucked inside deep valleys or heavy forests, but Brahmatal is a completely different game—it is all about walking on an exposed, snow-covered mountain ridge. If you want the absolute best, right-in-your-face views of massive Himalayan giants like Mt. Trishul and Mt. Nanda Ghunti, this is the trail I always recommend. <br><br> The journey takes you out of the Lohajung base camp, through ancient oak and rhododendron forests, and past two stunning high-altitude frozen lakes (Bekaltal and Brahmatal). When you finally push for the 12,200-foot summit, you are literally walking on a snowy ridgeline with a 360-degree panorama of snow-capped peaks surrounding you. <br><br> Even though you are hitting serious altitudes and navigating snow ridges, the gradient is surprisingly forgiving. It is an incredibly rewarding winter trek that demands basic fitness but absolutely zero technical mountaineering skills, making it a brilliant, less-crowded alternative to the Kedarkantha route. <br><br> According to local Himalayan mythology, Lord Brahma (the Hindu god of creation) meditated beside this exact high-altitude alpine lake thousands of years ago. Because this sacred, often frozen lake is the absolute heart of the journey and acts as your final major campsite before the summit push, the entire mountain ridge and the trail were named after it.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. ITINERARY MODULE -->
+        <section id="itinerary-module" class="w-full pt-12">
+            <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Brahmatal Trek: A Winter Wonderland Itinerary</h1>
+            <p class="text-gray-500 mb-8 text-sm pl-4">Interactive 6-Day Route & Elevation Profile</p>
+
+            <!-- Tabs -->
+            <div id="tabs-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mb-6"></div>
+
+            <!-- Chart Section -->
+            <div class="bg-white rounded-2xl p-6 mb-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-sm font-medium text-gray-700">Elevation Profile</h2>
+                    <span class="text-sm text-gray-500 italic">2,320m – 3,730m</span>
+                </div>
+                
+                <div class="relative w-full h-48">
+                    <svg id="chart-svg" class="w-full h-full overflow-visible" viewBox="0 0 800 200" preserveAspectRatio="none"></svg>
+                </div>
+                
+                <div class="flex justify-between mt-2 text-gray-500 text-xs font-semibold px-4" id="x-axis-labels">
+                    <span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span><span>D6</span>
+                </div>
+            </div>
+
+            <!-- Details Card -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div class="flex justify-between items-start mb-2">
+                    <div class="text-sm text-gray-500 italic" id="card-subtitle">Day 1 • Drive</div>
+                    <div id="card-tag" class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700">Easy</div>
+                </div>
+                <h3 class="text-2xl font-semibold mb-6 text-gray-900" id="card-title">Kathgodam to Lohajung</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 border-t border-gray-100 pt-4">
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Distance</div>
+                        <div class="font-semibold text-gray-900" id="card-distance">210 km drive</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Max Altitude</div>
+                        <div class="font-semibold text-gray-900" id="card-altitude">2,320 m</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500 mb-1 uppercase tracking-wider font-medium">Activity</div>
+                        <div class="font-semibold text-gray-900" id="card-activity">Drive</div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-600 text-sm leading-relaxed" id="card-desc">
+                  Scenic mountain drive along the Pindar and Alaknanda river valleys, passing through Almora and Kausani, ending at Lohajung—the base camp village for the trek.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. KEY POINTS MODULE -->
+        <section id="keypoints-module" class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Important Details</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Location</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Chamoli, Uttarakhand</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Altitude</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">12,250 ft <br /> (3,370 m)</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Duration</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">4-5 Days</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Difficulty</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Moderate</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Total Trek Distance</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">22-26 KM</span>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-xl text-center">
+                        <span class="block text-sm text-gray-500 font-semibold uppercase">Best Time</span>
+                        <span class="block mt-1 text-lg font-bold text-indigo-900">Dec–March</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Key Highlights</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Gives you the exact same hardcore winter snow and summit thrill as Kedarkantha, but with far fewer crowds for a much more peaceful experience.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        You get to explore and camp near two totally different frozen lakes on the same trail—Bekaltal hidden under dense oak forests, and Brahmatal sitting wide open in a massive alpine meadow.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        The final summit push is a thrilling, completely exposed walk along a snow-covered mountain ridge, making you feel like you are walking on top of the world.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Massive 7,000-meter Himalayan giants like Mt. Trishul and Mt. Nanda Ghunti appear so incredibly close from the top that you feel like you can literally reach out and touch them.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. Mandatory Permits & Documents -->
+        <section id="permits-module" class="w-full pt-12 space-y-12">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Mandatory Permits & Documents</h2>
+                <ul class="space-y-3 bg-white p-6 rounded-xl shadow-sm border border-gray-100 text-gray-700">
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Forest entry and camping permits are quickly cleared at the Lohajung forest checkpost. Just carry a physical copy of your original ID proof.
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="h-5 w-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        Always carry your original Aadhar, Voter ID, or Passport, along with 2-3 physical photocopies in your backpack.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 1. Traveller Note -->
+        <section id="traveler-note-module" class="w-full pt-12 space-y-12">
+            <div class="text-lg leading-relaxed text-gray-700 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100">
+                <p style="background-color: #ffeb3b; font-size: 24px; font-weight: bold; display: inline-block; padding: 3px 6px; border-radius: 4px;">
+                  Important Note for Travelers:
+                </p>
+                <p class="mt-4">
+                  Micro-spikes, snow gaiters, and UV-sunglasses are absolute must-haves.<br>
+                  Pro-Tip: Cold air kills thirst. Force yourself to drink 3-4 liters of warm water daily to avoid altitude sickness.
+                </p>
+            </div>
+        </section>
+
+        <!-- 5. IMAGE GALLERY MODULE -->
+        <section id="gallery-module" class="w-full pt-12 space-y-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-3">Trek Gallery</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=800&q=80" alt="Brahmatal landscape" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=800&q=80" alt="Snow ridges" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                
+                <div class="overflow-hidden rounded-2xl shadow-sm aspect-[4/3] group cursor-pointer" onclick="openLightbox(this.querySelector('img').src)">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=800&q=80" alt="Himalayan peaks" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ MODULE -->
+        <section id="faq-module" class="w-full pt-12">
+            <div onclick="openFirstFaqDirect()" class="cursor-pointer inline-block mb-8">
+                <h1 class="text-3xl font-bold mb-1 text-gray-900 border-l-4 border-indigo-600 pl-3">Frequently Asked Questions</h1>
+                <p class="text-gray-500 text-sm pl-4">Everything you need to know before heading to the Brahmatal Trek</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Why is this trek so famous and what's so special about it?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        The most special thing about this trek is its unique winter landscape featuring two fully frozen alpine lakes—Bekaltal and Brahmatal. It is also famous for its incredible, long ridge walk that gives you massive, uninterrupted, close-up views of Mt. Trishul and Mt. Nanda Ghunti that stay with you almost throughout the trail.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>Can this trek be done solo, or is a guide necessary?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        Taking a guide is not legally compulsory. During peak season, the trail is well-trodden and totally doable solo if you have basic trekking experience. However, if you are going right after a fresh winter snowfall, the exposed ridge gets completely covered in white, making navigation very tricky and dangerous. In that case, hiring a local guide from the Lohajung base camp for ₹1,000 to ₹1,200 per day is highly recommended.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-left font-semibold text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none">
+                        <span>What is the estimated total budget for a solo trekker?</span>
+                        <svg class="w-5 h-5 text-gray-500 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+                        The total DIY budget from Kathgodam (or Rishikesh) to Kathgodam comes to around ₹6,500 to ₹8,000. This easily covers your shared mountain taxis to the Lohajung base camp, forest camping permits, basic homestays at the base, and your daily trail food. If you need to rent heavy winter gear like sleeping bags or micro-spikes, you can easily get them from Lohajung, which will just add a little extra to this cost.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MORE TO EXPLORE MODULE -->
+        <section id="explore-module" class="w-full pt-8 border-t border-gray-200 mt-12">
+            <h2 class="text-xl font-bold text-gray-900 mb-6 text-center">More to Explore</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1626014903706-0bc8cb4bf05b?auto=format&fit=crop&w=400&q=80" alt="Hemkund Sahib" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Hemkund Sahib</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&w=400&q=80" alt="Badrinath" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Badrinath Temple</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                    <img src="https://images.unsplash.com/photo-1623345805780-8f01f714e65f?auto=format&fit=crop&w=400&q=80" alt="Rishikesh" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h4 class="font-bold text-gray-900">Rishikesh Guide</h4>
+                        <a href="#" class="text-sm text-indigo-600 mt-2 inline-block">Read More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 items-center justify-center p-4 opacity-0 transition-opacity duration-300" onclick="if(event.target === this) closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none z-50">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Full Screen" class="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl transform scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- JavaScript Scripts -->
+    <script>
+        const trekData = [
+            { day: 1, title: 'Day 1', label: '2,320 m', elev: 2320, route: 'Kathgodam to Lohajung', activity: 'Drive', subtitle: 'Day 1 • Drive', distance: '210 km drive', altitude: '2,320 m (7,600 ft)', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'Scenic mountain drive along the Pindar and Alaknanda river valleys, passing through Almora and Kausani, ending at Lohajung—the base camp village for the trek.' },
+            { day: 2, title: 'Day 2', label: '2,950 m', elev: 2950, route: 'Lohajung to Bekaltal', activity: 'Trek', subtitle: 'Day 2 • Trek', distance: '6 km trek', altitude: '2,950 m (9,700 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'Trail starts with a gradual climb through dense oak and rhododendron forests, crossing small streams before opening up near the serene, high-altitude alpine lake of Bekaltal.' },
+            { day: 3, title: 'Day 3', label: '3,170 m', elev: 3170, route: 'Bekaltal to Brahmatal Lake', activity: 'Trek', subtitle: 'Day 3 • Trek', distance: '7 km trek', altitude: '3,170 m (10,400 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'Trek through beautiful ridge lines and snow-dusted forest patches. You will pass Jhandi top, offering panoramic views of the surrounding peaks, before camping near the frozen/scenic Brahmatal Lake.' },
+            { day: 4, title: 'Day 4', label: '3,730 m', elev: 3730, route: 'Brahmatal Lake to Brahmatal Peak & Back to Jhandi/ Tilandi Campsite', activity: 'Trek', subtitle: 'Day 4 • Trek', distance: '7 km trek (round trip)', altitude: '3,730 m (12,250 ft)', tag: 'Moderate', tagColor: 'text-amber-700 bg-amber-100', desc: 'Early morning push to the Brahmatal peak for a breathtaking 360-degree sunrise view of mighty giants like Trishul and Nanda Ghunti, followed by descending down toward a lower campsite.' },
+            { day: 5, title: 'Day 5', label: '2,320 m', elev: 2320, route: 'Tilandi Campsite to Lohajung', activity: 'Descent Trek', subtitle: 'Day 5 • Trek', distance: '4 km trek', altitude: '2,320 m (7,600 ft) Descent', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'easy, pleasant downhill walk mostly through forest trails and ridges, leading back to Lohajung village by afternoon to celebrate the successful trek.' },
+            { day: 6, title: 'Day 6', label: '600 m', elev: 600, route: 'Lohajung to Kathgodam', activity: 'Drive', subtitle: 'Day 6 • Drive', distance: '210 km return drive', altitude: '600 m (1968 ft)', tag: 'Easy', tagColor: 'text-emerald-700 bg-emerald-100', desc: 'Morning departure from Lohajung via road to reach Kathgodam railway station or bus stand by evening for your onward journey.' }
+        ];
+
+        let activeDay = 1; 
+
+        function renderTabs() {
+            const container = document.getElementById('tabs-container');
+            container.innerHTML = '';
+            
+            trekData.forEach(item => {
+                const isActive = item.day === activeDay;
+                const btn = document.createElement('button');
+                btn.className = `tab-btn flex flex-col items-center justify-center p-3 rounded-[30px] border ${isActive ? 'tab-active' : 'bg-white border-gray-200 hover:border-gray-300'} cursor-pointer w-full focus:outline-none shadow-sm`;
+                btn.onclick = () => {
+                    activeDay = item.day;
+                    updateUI();
+                };
+                
+                btn.innerHTML = `
+                    <span class="font-bold text-sm ${isActive ? 'text-blue-700' : 'text-gray-700'}">${item.title}</span>
+                    <span class="text-xs ${isActive ? 'text-blue-500' : 'text-gray-500'} mt-1">${item.label}</span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function drawChart() {
+            const svg = document.getElementById('chart-svg');
+            const minElev = 0;
+            const maxElev = 4500;
+            const width = 800;
+            const height = 160; 
+            
+            const points = trekData.map((d, index) => {
+                const x = (index / (trekData.length - 1)) * (width - 100) + 50; 
+                const y = height - ((d.elev - minElev) / (maxElev - minElev)) * height + 20;
+                return { x, y, val: d.elev, day: d.day };
+            });
+
+            let pathD = `M ${points[0].x} ${points[0].y}`;
+            points.slice(1).forEach(p => { pathD += ` L ${p.x} ${p.y}`; });
+
+            let svgContent = `<path d="${pathD}" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />`;
+
+            points.forEach(p => {
+                const isActive = p.day === activeDay;
+                const r = isActive ? 8 : 6;
+                const fill = isActive ? '#3b82f6' : '#ffffff';
+                const stroke = '#3b82f6';
+                const strokeWidth = isActive ? 0 : 3;
+                
+                svgContent += `
+                    <circle cx="${p.x}" cy="${p.y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}" class="transition-all duration-300 drop-shadow-md"/>
+                    <text x="${p.x}" y="${p.y - 15}" fill="${isActive ? '#111827' : '#6b7280'}" font-size="12" font-weight="${isActive ? 'bold' : '600'}" text-anchor="middle">${p.val}m</text>
+                `;
+            });
+
+            svg.innerHTML = svgContent;
+        }
+
+        function updateCard() {
+            const data = trekData.find(d => d.day === activeDay);
+            document.getElementById('card-subtitle').textContent = data.subtitle;
+            document.getElementById('card-title').textContent = data.route;
+            document.getElementById('card-distance').textContent = data.distance;
+            document.getElementById('card-altitude').textContent = data.altitude;
+            document.getElementById('card-activity').textContent = data.activity;
+            document.getElementById('card-desc').textContent = data.desc;
+            
+            const tag = document.getElementById('card-tag');
+            tag.textContent = data.tag;
+            tag.className = `text-xs font-semibold px-3 py-1 rounded-full ${data.tagColor}`;
+        }
+
+        function updateUI() {
+            renderTabs();
+            drawChart();
+            updateCard();
+        }
+
+        // Initialize UI
+        updateUI();
+
+        // FAQ Toggle Function
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                const btn = item.querySelector('button');
+                const c = item.querySelector('div');
+                const i = item.querySelector('svg');
+                if (btn !== button) {
+                    c.classList.add('hidden');
+                    i.classList.remove('rotate-180');
+                }
+            });
+
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Navbar FAQs Click Handler
+        function scrollToAndOpenFaq(event) {
+            event.preventDefault();
+            const section = document.getElementById('faq-module');
+            section.scrollIntoView({ behavior: 'smooth' });
+            
+            setTimeout(() => {
+                openFirstFaqDirect();
+            }, 300);
+        }
+
+        // Direct Open First FAQ
+        function openFirstFaqDirect() {
+            const firstCard = document.querySelector('#faq-module .space-y-4 > div');
+            if (firstCard) {
+                const content = firstCard.querySelector('div.hidden');
+                const icon = firstCard.querySelector('svg');
+
+                document.querySelectorAll('#faq-module .space-y-4 > div').forEach(item => {
+                    item.querySelector('div').classList.add('hidden');
+                    item.querySelector('svg').classList.remove('rotate-180');
+                });
+
+                if (content && icon) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            }
+        }
+
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imageSrc;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+
+    <!-- Professional Footer with All Rights Reserved -->
+    <footer class="bg-white border-t border-gray-200 mt-16">
+        <div class="max-w-5xl mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <!-- Logo and Name Container -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0">
+                    <img src="../elements/L_O_G_O.png" alt="Himalayan Hues Logo" class="w-full h-full object-contain scale-125">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-xl font-extrabold text-slate-800 drop-shadow-sm leading-none">
+                        Himalayan <span class="text-blue-600">Hues</span>
+                    </h2>
+                    <p class="text-[9px] sm:text-[10px] font-semibold text-slate-500 mt-1 tracking-wider uppercase">
+                        Dusty Boots, Vivid Altitudes
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Icons / Quick Links -->
+            <div class="flex space-x-4 text-gray-500 text-lg">
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-emerald-600 transition"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Copyright Bar -->
+        <div class="border-t border-gray-100 py-4 text-center text-xs text-gray-500">
+            <p>&copy; 2026 Himalayan Hues. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
